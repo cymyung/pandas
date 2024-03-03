@@ -1,0 +1,27 @@
+<html lang = 'ko'>
+	<head>
+		<title> 명창연의 홈페이지입니다.</title>
+
+		<meta charset = 'utf-8'>
+
+		<style>
+		</style>
+	</head>
+
+	<body>
+		Hello,<br>
+		Welcome to cymyung's web page
+		<ul> my favorite list
+			<li>game</li>
+			<li>travel</li>		
+			<li>movie</li>
+		</ul>
+		<ul> my dislike list
+			<li>cleaning</li>
+			<li>arrangement</li>		
+			<li>punishment</li>
+		</ul>
+
+
+	</body>
+</html>

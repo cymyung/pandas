@@ -1,0 +1,68 @@
+Web Crawling 순서
+
+0. bs4 모듈의 beautiful soup 클래스 사용
+	import bs4
+	bs4.BeautifulSoup()
+
+	from bs4 import BeautifulSoup
+	BeautifulSoup()
+
+	from bs4 import BeautifulSoup as BS
+	BS
+
+1. 웹(html) 문서 불러오기
+	1-1 다운받아 놓은 웹 문서 불러오기
+		file = open('html파일', 'r')
+		file.read()
+		file.readline()
+		file.readlines()
+
+		read=file.read()
+		file.close()
+
+	1-2 웹서버 접속해서 실시간으로 웹문서 다운받기
+		import requests
+		response = requests.get('http://url주소')
+		text = response.text
+
+2. 웹문서의 내용(str, 문자열)을 분석가능한 객체(bs4.BeautifulSoup) 생성(변수는 tag로 지정)
+	html = bs4.BeautifulSoup(read, 'html.parser')
+
+3. find, find_all, select, select_one 메소드 등을 이용하여 특정한 <tag> 블럭 조회
+	find('tag')		: <tag> ... </tag>으로 구성된 태그블럭 중 가장 처음 발견된 1개의 블럭을 반환한다.
+	find_all('tag')	: <tag> ... </tag>으로 구성된 태그블럭들을 묶어서 목록으로 반환한다.
+			 <tag> ... </tag>, <tag> ... </tag>, <tag> ... </tag>, ....
+
+	find('li') : <li> ... </li> 으로 구성된 태그블럭 중 가장 처음 발견된 1개의 블럭을 반환한다.
+		<li>게임</li>
+	find('ul') : <ul> ... </ul> 으로 구성된 태그블럭 중 가장 처음 발견된 1개의 블럭을 반환한다.
+		<ul> 
+			<li>game</li>
+			<li>travel</li>		
+			<li>movie</li>
+		</ul>
+	find_all('li') : <li> ... </li> 으로 구성된 태그블럭들을 목록으로 반환한다.
+┌<body>───────────   ─┐
+│    <ul>		         	│ find('li')	: <li> ... </li> 으로 구성된 태그블럭 중
+│        <li>게임</li>	         	│		  가장 처음 발견된 1개의 블럭을 반환한다.
+│        <li>여행</li>	         	│		  -> <li>게임</li>
+│        <li>영화</li>	         	│
+│    </ul>		         	│ find('ul')	: <ul> ... </ul> 으로 구성된 태그블럭 중
+│    <ul>			│		  가장 처음 발견된 1개의 블럭을 반환한다
+│        <li>잔소리</li>		│		  -> <ul>
+│        <li>청소</li>		│		        <li>게임</li>
+│        <li>정리</li>		│		        <li>여행</li>
+│    </ul>			│		        <li>영화</li>
+└</body> ─────────    ──┘		     </ul>
+
+find_all('li')  : <li> ... </li> 으로 구성된 태그블럭들을 목록으로 반환한다.
+                  -> [<li>게임</li>, <li>여행</li>, <li>영화</li>,
+                      <li>잔소리</li>, <li>청소</li>, <li>정리</li>]
+
+
+
+
+
+	html.find()
+
+	html.find_all()
